@@ -1,0 +1,27 @@
+{
+  "name": "babel-plugin-register-universal-module",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gopikrishna19/babel-plugin-register-universal-module.git"
+  },
+  "author": "Gopikrishna Sathyamurthy",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Gopikrishna19/babel-plugin-register-universal-module/issues"
+  },
+  "homepage": "https://github.com/Gopikrishna19/babel-plugin-register-universal-module#readme",
+  "devDependencies": {
+    "@babel/cli": "7.4.3",
+    "@babel/core": "7.4.3",
+    "@babel/preset-env": "7.4.3",
+    "code": "5.2.4",
+    "cross-spawn": "6.0.5",
+    "mocha": "6.1.2"
+  }
+}
