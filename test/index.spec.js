@@ -133,5 +133,21 @@ describe('babel-plugin-register-universal-module', () => {
             delete global.prefix;
         });
     });
+
+    describe('when transpiling a module with version', () => {
+        it('should register the module on global namespace', () => {
+            const result = transpile('test-module-with-version');
+
+            expect(result.error).to.not.exist();
+
+            const lib = require('../examples/test-module-with-version');
+            const expectedValue = 'variableWithVersion';
+
+            expect(lib.variable).to.equal(expectedValue);
+            expect(global.test.module['0.1.0'].variable).to.equal(expectedValue);
+
+            delete global.test;
+        });
+    });
 });
 

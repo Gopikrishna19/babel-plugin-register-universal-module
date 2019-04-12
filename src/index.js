@@ -12,7 +12,6 @@ const isIndexFile = (state) => {
         })));
     } else {
         const entry = path.normalize(state.opts.entry || 'src/index.js');
-        console.log(path.normalize(entry), path.relative(cwd, filename));
 
         return path.normalize(entry) === path.relative(cwd, filename);
     }
@@ -36,6 +35,7 @@ const getPrefixParts = (state) => {
 
 const getNameParts = (state) => {
     const prefixParts = getPrefixParts(state);
+    const pkg = require(path.resolve(state.cwd, 'package.json'));
     let nameParts = [];
 
     if (Array.isArray(state.opts.libName)) {
@@ -43,10 +43,12 @@ const getNameParts = (state) => {
     } else if (typeof state.opts.libName === 'string') {
         nameParts = processName(state.opts.libName);
     } else {
-        nameParts = processName(require(path.resolve(state.cwd, 'package.json')).name);
+        nameParts = processName(pkg.name);
     }
 
-    return prefixParts.concat(nameParts);
+    return prefixParts
+        .concat(nameParts)
+        .concat(state.opts.version ? [pkg.version] : []);
 };
 
 const getConditionalNode = (node, fallback, altNode = node) => `typeof ${node} !== 'undefined' ? ${altNode} : ${fallback}`;
