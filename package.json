@@ -1,8 +1,17 @@
 {
   "name": "babel-plugin-register-universal-module",
   "version": "1.0.0",
-  "description": "",
+  "description": "A babel plugin to register a library on global with universal namespace.",
   "main": "src/index.js",
+  "keywords": [
+    "babel",
+    "babel-plugin",
+    "register",
+    "universal",
+    "module",
+    "definition",
+    "umd"
+  ],
   "scripts": {
     "test": "mocha"
   },
