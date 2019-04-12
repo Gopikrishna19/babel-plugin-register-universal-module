@@ -50,6 +50,26 @@ describe('babel-plugin-register-universal-module', () => {
         });
     });
 
+    describe('when transpiling a module with multiple entries', () => {
+        it('should merge and register the modules on global namespace', () => {
+            const result = transpile('test-module-with-multiple-entries');
+
+            expect(result.error).to.not.exist();
+
+            const lib1 = require('../examples/test-module-with-multiple-entries/lib/entry1');
+            const lib2 = require('../examples/test-module-with-multiple-entries/lib/entry2');
+            const expectedValue1 = 'variableAtEntry1';
+            const expectedValue2 = 'variableAtEntry2';
+
+            expect(lib1.entry1Variable).to.equal(expectedValue1);
+            expect(lib2.entry2Variable).to.equal(expectedValue2);
+            expect(global.test.module.entry1Variable).to.equal('variableAtEntry1');
+            expect(global.test.module.entry2Variable).to.equal('variableAtEntry2');
+
+            delete global.test;
+        });
+    });
+
     describe('when transpiling a module with custom library name as an array', () => {
         it('should register the module on global namespace', () => {
             const result = transpile('test-module-with-custom-lib-name-as-array');
