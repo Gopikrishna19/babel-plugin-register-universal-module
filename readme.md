@@ -4,6 +4,14 @@ A babel plugin to register a library on global with universal namespace.
 
 [![Build Status](https://travis-ci.org/Gopikrishna19/babel-plugin-register-universal-module.svg?branch=master)](https://travis-ci.org/Gopikrishna19/babel-plugin-register-universal-module)
 
+## Table of Contents
+
+1. [Usage](#usage)
+    1. [Options](#options)
+1. [Examples](#examples)
+1. [Output](#output)
+1. [License](#license)
+
 ## Usage
 
 ```bash
@@ -26,21 +34,85 @@ module.exports = {
 }
 ```
 
-### Examples
+### Options
+
+| Name | Required | Type | Default |
+|---|---|---|---|
+| [`entry`](#entry) | No | String or Array | `src/index.js` |
+| [`libName`](#libname) | No | String or Array | `name` from `package.json` |
+| [`prefix`](#prefix) | No | String or Array | `undefined` |
+| [`version`](#version) | No | Boolean | `false` |
+
+#### `entry`
+
+This can be a String or an Array. By default it points to `src/index.js`. When multiple entries are provided, the plugin will try to
+insert the registration code in all entries. This also extends the existing entry. Try [`version`](#version) option to avoid any
+potential conflicts. See the output sample [output](#output) for inserted code.
+
+Example 1:
+```json
+{ "entry": "./index.js" }
+```
+
+Example 2:
+```json
+{ "entry": [ "./src/entry1.js", "./src/entry2.js" ] }
+```
+
+#### `libName`
+
+The namespace under which the module will be registered in `global`. The `global` can be either Node `global` or `window` of a browser,
+is available in the scope will be chosen. The `libName` defaults to the package name. See the output sample [output](#output) for generated code.
+
+Example 1:
+```json
+{ "libName": "my.library" }
+```
+
+Example 2:
+```json
+{ "libName": ["my", "library"] }
+```
+
+#### `prefix`
+
+To scope different modules, a prefix can be used. Similar to the `libName`, this can also be a String or an Array.
+
+For example:
+```json
+{ "prefix": "my.tools" }
+```
+
+And the library will be available at `global.my.tools.my.library`.
+
+#### `version`
+
+This is a Boolean set to avoid collisions when used in multiple versions of same library. For example, consider following dependency structure:
+
+```
++ my-project
+|
++--+-- dependency1
+|  |
+|  +-- my.libaray@1.0.0
+|
++--+-- dependency2
+   |
+   +-- my.libarry@2.0.0
+``` 
+
+When `my-project` imports `dependency1` and `dependency2`, their transitive dependency `my.library` can override/extend each other. This may not be
+a desired outcome. So the `version` option can be used to scope the exports. The version will be used from `package.json`.
+
+When set to true, the library will be available at `global.my.library['1.0.0']`
+
+## Examples
 
 View [examples](examples) for different setups.
 
-### Options
+## Output
 
-| Name | Required | Type | Default | Definition | Example |
-|---|---|---|---|---|---|
-| `entry` | No | String or Array | `src/index.js` | The file(s) where the registration is to be written | `src/my-lib-entry.js` |
-| `libName` | No | String or Array | Module name from `package.json` | The namespace under which the module will be registered in `global` | `['my', 'module']` |
-| `prefix` | No | String or Array | `undefined` | Add a prefix to the module name | `my.scope` -> `my.scope.my.module` |
-
-### Output
-
-After babel transpiles `src` into `lib`, this plugin will insert code in the `entry` file that will make the module 
+After babel transpiles the source code down to es5 (or env), this plugin will insert code in the `entry` file that will make the module 
 available in the global namespace. For example, with following setup,
 
 ```json
