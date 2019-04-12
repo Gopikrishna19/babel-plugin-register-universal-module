@@ -2,6 +2,8 @@
 
 A babel plugin to register a library on global with universal namespace.
 
+[![Build Status](https://travis-ci.org/Gopikrishna19/babel-plugin-register-universal-module.svg?branch=master)](https://travis-ci.org/Gopikrishna19/babel-plugin-register-universal-module)
+
 ## Usage
 
 ```bash
