@@ -24,13 +24,17 @@ module.exports = {
 }
 ```
 
+### Examples
+
+View [examples](examples) for different setups.
+
 ### Options
 
 | Name | Required | Type | Default | Definition | Example |
 |---|---|---|---|---|---|
+| `entry` | No | String or Array | `src/index.js` | The file(s) where the registration is to be written | `src/my-lib-entry.js` |
 | `libName` | No | String or Array | Module name from `package.json` | The namespace under which the module will be registered in `global` | `['my', 'module']` |
-| `entry` | No | String | `src/index.js` | The file where the registration is to be written | `src/my-lib-entry.js` |
-| `repfix` | No | String or Array | `undefined` | Add a prefix to the module name | `my.scope` -> `my.scope.my.module` |
+| `prefix` | No | String or Array | `undefined` | Add a prefix to the module name | `my.scope` -> `my.scope.my.module` |
 
 ### Output
 
