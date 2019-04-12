@@ -4,14 +4,13 @@ A babel plugin to register a library on global with universal namespace.
 
 [![Build Status](https://travis-ci.org/Gopikrishna19/babel-plugin-register-universal-module.svg?branch=master)](https://travis-ci.org/Gopikrishna19/babel-plugin-register-universal-module)
 
-[![NPM](https://nodei.co/npm/express.png)](https://www.npmjs.com/package/babel-plugin-register-universal-module)
+[![NPM](https://nodei.co/npm/babel-plugin-register-universal-module.png)](https://www.npmjs.com/package/babel-plugin-register-universal-module)
 
 ## Table of Contents
 
 1. [Usage](#usage)
     1. [Options](#options)
-1. [Examples](#examples)
-1. [Output](#output)
+    1. [Output](#output)
 1. [License](#license)
 
 ## Usage
@@ -29,12 +28,15 @@ module.exports = {
       'register-universal-module', {
         libName,
         entry,
-        prefix
+        prefix,
+        version
       }
     ]
   ]
 }
 ```
+
+View [examples](examples) for more types of setups.
 
 ### Options
 
@@ -108,11 +110,7 @@ a desired outcome. So the `version` option can be used to scope the exports. The
 
 When set to true, the library will be available at `global.my.library['1.0.0']`
 
-## Examples
-
-View [examples](examples) for different setups.
-
-## Output
+### Output
 
 After babel transpiles the source code down to es5 (or env), this plugin will insert code in the `entry` file that will make the module 
 available in the global namespace. For example, with following setup,
