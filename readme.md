@@ -4,6 +4,8 @@ A babel plugin to register a library on global with universal namespace.
 
 [![Build Status](https://travis-ci.org/Gopikrishna19/babel-plugin-register-universal-module.svg?branch=master)](https://travis-ci.org/Gopikrishna19/babel-plugin-register-universal-module)
 
+[![NPM](https://nodei.co/npm/express.png)](https://www.npmjs.com/package/babel-plugin-register-universal-module)
+
 ## Table of Contents
 
 1. [Usage](#usage)
