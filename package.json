@@ -26,11 +26,11 @@
   },
   "homepage": "https://github.com/Gopikrishna19/babel-plugin-register-universal-module#readme",
   "devDependencies": {
-    "@babel/cli": "7.4.3",
-    "@babel/core": "7.4.3",
-    "@babel/preset-env": "7.4.3",
+    "@babel/cli": "^7.10.5",
+    "@babel/core": "^7.11.4",
+    "@babel/preset-env": "^7.11.0",
     "code": "5.2.4",
-    "cross-spawn": "6.0.5",
-    "mocha": "6.1.2"
+    "cross-spawn": "^7.0.3",
+    "mocha": "^8.1.3"
   }
 }
